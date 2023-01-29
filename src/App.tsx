@@ -1,14 +1,9 @@
-import React, { useState } from "react";
-import { createGlobalStyle, ThemeProvider } from "styled-components";
-import Router from "./router";
+import { createGlobalStyle } from "styled-components";
 import "./assets/scss/main.scss";
-import { ReactQueryDevtools } from "react-query/devtools";
-import { lightTheme, darkTheme } from "./theme";
-import { useRecoilValue } from "recoil";
-import { isDarkAtom } from "./atoms";
+import Todo from "./page/Todo";
 
 // props 전역 스타일
-const GlobalStyle = createGlobalStyle`
+const CommonStyle = createGlobalStyle`
 body {
 background-color: ${(props) => props.theme.bgColor};
 color: ${(props) => props.theme.textColor}
@@ -16,15 +11,10 @@ color: ${(props) => props.theme.textColor}
 `;
 
 function App() {
-  const isDark = useRecoilValue(isDarkAtom);
-
   return (
     <>
-      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-        <GlobalStyle />
-        <Router />
-        <ReactQueryDevtools initialIsOpen={true} />
-      </ThemeProvider>
+      <CommonStyle />
+      <Todo />
     </>
   );
 }
