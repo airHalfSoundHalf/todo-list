@@ -7,14 +7,14 @@ const rotate = keyframes`
   }
 `;
 
-const Wrapper = styled.div`
+const LoadingWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
 `;
 
-export const LoadingSpinner = styled.div`
+export const Spinner = styled.div`
   border: 4px solid rgba(255, 255, 255, 0.5);
   border-radius: 50%;
   border-top-color: #fff;
@@ -29,12 +29,12 @@ export const LoadingSpinner = styled.div`
   animation: ${rotate} 1s linear infinite;
 `;
 
-const Loading = () => {
+const LoadingSpinner = () => {
   return (
-    <Wrapper>
-      <LoadingSpinner />
-    </Wrapper>
+    <LoadingWrapper>
+      <Spinner />
+    </LoadingWrapper>
   );
 };
 
-export default Loading;
+export default LoadingSpinner;
