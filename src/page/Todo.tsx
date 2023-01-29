@@ -1,25 +1,22 @@
-import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+
+interface IForm {
+  todo: string;
+}
 
 const Todo = () => {
-  const [todo, setTodo] = useState("");
-
-  const onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    const {
-      currentTarget: { value },
-    } = event;
-    setTodo(value);
-  };
-
-  const onSubmitHandler = (evnet: React.FormEvent<HTMLFormElement>) => {
-    evnet.preventDefault();
+  const { register, setValue, handleSubmit } = useForm<IForm>();
+  const onSubmit = (data: IForm) => {
+    setValue("todo", "");
   };
 
   return (
     <>
-      <form onSubmit={onSubmitHandler}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <input
-          onChange={onChangeHandler}
-          value={todo}
+          {...register("todo", {
+            required: "todo를 작성해주세요.",
+          })}
           placeholder="todo placeholder"
         />
         <button>추가</button>
